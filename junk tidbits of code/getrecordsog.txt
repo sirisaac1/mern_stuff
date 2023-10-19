@@ -1,0 +1,16 @@
+async function getRecords() {
+     console.log("doing fetch from localhost 5000");
+     const response = await fetch(`http://localhost:5000/record/`);
+      if (!response.ok) {
+       const message = `An error occurred: ${response.statusText}`;
+       window.alert(message);
+       console.log("something is wrong if its coming here");
+       return;
+      }
+      console.log("now attempting to await response.json");
+      const records = await response.json();
+      console.log("Fetched records:", records);
+      setRecords(records);
+    }
+    getRecords();
+    return;
