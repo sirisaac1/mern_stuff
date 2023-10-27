@@ -43,14 +43,24 @@ import { useParams, useNavigate } from "react-router";
      level: form.level,
    };
     // This will send a post request to update the data in the database.
-   await fetch(`http://localhost:5000/update/${params.id}`, {
-     method: "POST",
-     body: JSON.stringify(editedPerson),
-     headers: {
-       'Content-Type': 'application/json'
-     },
-   });
-    navigate("/");
+    try {
+      const response = await fetch(`http://localhost:5000/update/${params.id}`, {
+        method: "POST",
+        body: JSON.stringify(editedPerson),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+  
+      if (!response.ok) {
+        const errorMessage = `Error: ${response.status} - ${response.statusText}`;
+        throw new Error(errorMessage);
+      }
+  
+      navigate("/");
+    } catch (error) {
+      console.error("Update failed:", error);
+    }
  }
   // This following section will display the form that takes input from the user to update the data.
  return (
