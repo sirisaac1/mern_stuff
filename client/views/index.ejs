@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Spotify Tracks</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script>
+    const topTracks = <%= JSON.stringify(topTracks) %>;
+  </script>
+  <script src="/bundle.js"></script> <!-- Assuming your bundled React code is in a 'bundle.js' file -->
+</body>
+</html>
